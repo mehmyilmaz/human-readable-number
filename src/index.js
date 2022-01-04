@@ -1,5 +1,5 @@
 module.exports = function toReadable (number) {
-    dictionary = {
+    const dictionary = {
         0: 'zero',
         1: 'one',
         2: 'two',
