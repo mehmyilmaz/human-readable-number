@@ -29,7 +29,37 @@ module.exports = function toReadable (number) {
         80: 'eighty',
         90: 'ninety',
         100: 'hundred',
-        1000: 'thousand',
-        1000000: 'million',
     }
-}
+        const array = number.toString().split('').reverse()
+    let result = '';
+
+    if (array[2]) {
+        result += dictionary[Number(array[2])] + ' ' + dictionary[100]
+    }
+
+    if (array[1]) {
+        const n = Number(array[1]) * 10;
+        if (n > 19) {
+            if (array[2]) result += ' ' 
+            result += dictionary[n]
+            if (array[0]) {
+                if (array[0] != 0) {
+                    if (array[1]) result += ' ' 
+                    result += dictionary[Number(array[0])]
+                }
+            }
+        } else if (n > 0) {
+            if (array[2]) result += ' ' 
+            result += dictionary[n + Number(array[0])]
+        } else if (array[0] && array[0] > 0) {
+            if (array[1]) result += ' '
+            result += dictionary[Number(array[0])]
+        }
+    } else if (array[0]) {
+        if (array[1]) result += ' '
+        result += dictionary[Number(array[0])]
+    }
+
+    return result
+    }
+
